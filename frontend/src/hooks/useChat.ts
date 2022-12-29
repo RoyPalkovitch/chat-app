@@ -35,6 +35,7 @@ export function useChat() {
         timestamp: new Date(),
         body: event.target.value,
         authorId: currentUser!.id,
+
         // todo: likes should be initialized in the server,
         // todo: authorName should be added by the server
       };
@@ -53,19 +54,16 @@ export function useChat() {
 
       // todo - bonus: handle changing the message status from 'pending' to 'ok'
       //  when a success response is returned from the server
-      await addNewMessage(newMessage);
+      const status = await addNewMessage(newMessage);
 
-      // todo - remove these lines - mocking changing the message status
-      setTimeout(() => {
-        setMessages([
-          ...messages, {
-            ...newMessage,
-            likes: [],
-            authorName: currentUser!.name,
-            status: 'ok'
-          }
-        ]);
-      }, 1000);
+      setMessages([...messages,
+      {
+        ...newMessage,
+        likes: [],
+        authorName: currentUser!.name,
+        status: status ? 'ok' : 'error'
+      }]);
+      return;
     }
   };
 
@@ -73,7 +71,6 @@ export function useChat() {
     const userLiked = message.likes!.indexOf(currentUser!.id);
     userLiked === -1 ? message.likes!.push(currentUser!.id) : message.likes!.splice(userLiked, 1);
     setSelectedMessage({ ...message });
-
     // todo: change the likes in the server
     await changeMessageLikes(message.id, currentUser!.id, userLiked !== -1);
   };

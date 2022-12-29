@@ -19,6 +19,18 @@
     "@vitejs/plugin-react": "^2.2.0",
     "sass": "^1.57.0",
     "typescript": "^4.6.4",
-    "vite": "^3.2.3"
-  }
+    "vite": "^3.2.5"
+  },
+  "description": "This app is a frontend implementation for a chat application, using mock data.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoyPalkovitch/chat-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoyPalkovitch/chat-app/issues"
+  },
+  "homepage": "https://github.com/RoyPalkovitch/chat-app#readme"
 }
